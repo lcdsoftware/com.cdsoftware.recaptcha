@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-Category: idempiere-plugin
+Bundle-ManifestVersion: 2
+Bundle-Name: com.cdsoftware.recaptcha
+Bundle-SymbolicName: com.cdsoftware.recaptcha
+Bundle-Version: 12.0.0.qualifier
+Bundle-Vendor: www.casadelsoftware.com
+Require-Bundle: org.apache.commons.lang3,
+ org.adempiere.base,
+ org.adempiere.plugin.utils,
+ org.adempiere.ui.zk,
+ zcommon,
+ zel,
+ zhtml,
+ zk,
+ zkbind,
+ zkplus,
+ zul,
+ zweb
+Bundle-ClassPath: .,
+ lib/freemarker.jar
+Fragment-Host: org.adempiere.ui.zk;bundle-version="12.0.0"
+

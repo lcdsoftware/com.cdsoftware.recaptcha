@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <config-name>com.cdsoftware.recaptcha</config-name>
+    <listener>
+        <description>reCAPTCHA Login Integration Listener</description>
+        <listener-class>com.cdsoftware.recaptcha.listener.RecaptchaLoginListener</listener-class>
+    </listener>
+</config>
