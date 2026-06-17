@@ -1,7 +1,7 @@
 # com.cdsoftware.recaptcha
 
 - Copyright: 2026 https://www.casadelsoftware.com
-- Repository: https://github.com/casadelsoftware/com.cdsoftware.recaptcha.git
+- Repository: https://bitbucket.org/cdsoftware/com.cdsoftware.recaptcha
 - License: GPL 2
 
 ## Description
@@ -88,9 +88,25 @@ Helper class for creating and formatting `Timestamp` instances.
 
 ### Installation
 
-1. Deploy the `com.cdsoftware.recaptcha` plugin bundle into the iDempiere OSGi container. Since it is configured as a fragment of `org.adempiere.ui.zk`, it will merge automatically with ZK's classloader context.
-2. If required, import the plugin's 2Pack metadata to register validation messages.
-3. Restart or refresh the OSGi bundle context to apply ZK configurations.
+1. Deploy the `com.cdsoftware.recaptcha` plugin bundle into the iDempiere OSGi container.
+2. Since it is configured as a fragment of `org.adempiere.ui.zk`, it will merge automatically with ZK's classloader context.
+3. If required, import the plugin's 2Pack metadata to register validation messages.
+
+### OSGi Fragment Resolution (Troubleshooting)
+
+Because this plugin is packaged as an OSGi Fragment, it does not have its own active lifecycle (it cannot be started directly and will never reach the `ACTIVE` state). 
+
+When you install it on a running server, it defaults to the `INSTALLED` state:
+1. Locate the bundle ID of the fragment and its host bundle (`org.adempiere.ui.zk`):
+   ```osgi
+   ss | grep recaptcha         # e.g. Bundle ID: 42
+   ss | grep adempiere.ui.zk   # e.g. Bundle ID: 15
+   ```
+2. To attach the fragment, run `refresh` on the host bundle (or the fragment):
+   ```osgi
+   refresh 15
+   ```
+3. The fragment bundle status will transition from `INSTALLED` to `RESOLVED`, indicating it has successfully attached to the host web client.
 
 ### Configuration
 
